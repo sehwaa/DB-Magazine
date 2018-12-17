@@ -143,6 +143,7 @@ figure.snip1384.hover i {
 <!-- Sidebar (hidden by default) -->
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+    <a href="/" class="w3-bar-item w3-button">Home</a>
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">내 출석 보기</a>
     <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
     <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
@@ -168,22 +169,36 @@ figure.snip1384.hover i {
       <figure class="snip1384">
           <img src="../static/img/encore.png" style="width:100%; height:413px"/>
           <figcaption>
-              <h3>출석하기!</h3>
+              <h3>오늘의 얼리버드</h3>
               <p>
-                  Go!
+                <img src="../static/img/crown.png" width="20px" height="20px">
+                &nbsp;{{early_bird[0].name}}&nbsp;&nbsp;&nbsp;{{early_bird[0].p_day}}<br><br>
+                <img src="../static/img/second.png" width="20px" height="20px">
+                &nbsp;{{early_bird[1].name}}&nbsp;&nbsp;&nbsp;{{early_bird[1].p_day}}<br><br>
+                <img src="../static/img/third_.png" width="20px" height="20px">
+                &nbsp;{{early_bird[2].name}}&nbsp;&nbsp;&nbsp;{{early_bird[2].p_day}}
               </p><i class="ion-ios-arrow-right"></i>
               <br><br>
           </figcaption>
           <a href="/attendance"></a>
       </figure>
     </div>
-    <div class="w3-third">
-      <img src="../static/img/steak.jpg" alt="Steak" style="width:100%">
-      <h3>반스케쥴</h3>
-      <p>달력형식으로</p>
+    <div class="w3-third" style="background-color: #f8f8f8; height: 510px">
+        <h4 style="text-align:left; margin-top:25px; margin-left:10px; margin-bottom: 25px; font-weight: bold">DB반 일정</h4>
+        <figure class="snip1384">
+            <img src="../static/img/schedule.jpg" style="width:100%; height:413px"/>
+            <figcaption>
+                <h3>DB Schedule</h3>
+                <p>
+                    프로젝트 일정 및 기타 일정
+                </p><i class="ion-ios-arrow-right"></i>
+                <br><br>
+            </figcaption>
+            <a href="/calendar"></a>
+        </figure>
     </div>
     <div class="w3-third" style="background-color: #f8f8f8">
-      <h4 style="text-align:left; margin-top:25px; margin-left:10px; margin-bottom: 25px">금주의 게임왕</h4>
+      <h4 style="text-align:left; margin-top:25px; margin-left:10px; margin-bottom: 25px; font-weight: bold">금주의 게임왕</h4>
       <figure class="snip1384">
           <img src="../static/img/tetris.jpg" style="width:100%"/>
           <figcaption>

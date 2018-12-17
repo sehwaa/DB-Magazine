@@ -5,6 +5,7 @@ import pymysql
 from bs4 import BeautifulSoup
 import requests
 import operator
+import datetime
 
 mysql = MySQL(cursorclass=pymysql.cursors.DictCursor)
 app = Flask(__name__)
@@ -12,7 +13,7 @@ app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = '1234'
 app.config['MYSQL_DATABASE_DB'] = 'dbmagazine'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+app.config['MYSQL_DATABASE_HOST'] = '192.168.22.103'
 
 app.config.from_object(__name__)
 app.secret_key = os.urandom(12)
@@ -21,19 +22,16 @@ mysql.init_app(app)
 
 @app.route('/')
 def index():
-    conn = mysql.connect()
-    cur = conn.cursor()
-    sql = "SELECT * FROM game ORDER BY score DESC"
-    cur.execute(sql)
-    result = cur.fetchall()
+    result = tetrisrank()
     lol=lol_opgg()
+    earlybird = early_bird()
     if not session.get('user_info'):
-        return render_template('index.html', gameranking=result , lol=lol)
+        return render_template('index.html', gameranking=result , lol=lol, early_bird=earlybird)
     else:
         if session.get('user_info')[0]['name'] == "김나영":
-            return render_template('nayoung_index.html', user_info=session.get('user_info'), gameranking=result, lol=lol)
+            return render_template('nayoung_index.html', user_info=session.get('user_info'), gameranking=result, lol=lol, early_bird=earlybird)
         else:
-            return render_template('after_login_index.html', user_info=session.get('user_info'), gameranking=result, lol=lol)
+            return render_template('after_login_index.html', user_info=session.get('user_info'), gameranking=result, lol=lol, early_bird=earlybird)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -101,12 +99,7 @@ def tetris_ranking():
     if not session.get('user_info'):
         return render_template('loginview.html')
     else:
-        sql = "SELECT * FROM game WHERE game_name='테트리스' ORDER BY score DESC"
-        conn = mysql.connect()
-        cur = conn.cursor()
-        cur.execute(sql)
-        ranking = cur.fetchall()
-        conn.close()
+        ranking = tetrisrank()
         return render_template('tetris_ranking.html', ranking=ranking, user_info=session.get('user_info'))
 
 @app.route('/lol_ranking')
@@ -115,12 +108,15 @@ def lol_ranking():
         return render_template('loginview.html')
     else:
         lol=lol_opgg()
-        return render_template('lol_ranking.html', lol=lol)
+        return render_template('lol_ranking.html', lol=lol, user_info=session.get('user_info'))
 
 
-@app.route('/attendance') # 메인
+@app.route('/attendance') #메인
 def attendance():
-    return render_template('attendance.html')
+    if session.get('user_info'):
+        return render_template('attendance.html', user_info=session.get('user_info'))
+    else:
+        return render_template('loginview.html')
 
 @app.route('/present', methods=['GET','POST']) #출석입력
 def present():
@@ -230,6 +226,13 @@ def s_alist():
     conn.close()
     return render_template('select_a_count.html', alate_lists=alate_lists)
 
+@app.route('/calendar')
+def calendar():
+    if session.get('user_info'):
+        return render_template('calendar.html', user_info=session.get('user_info'))
+    else:
+        return render_template('loginview.html')
+
 def lol_opgg():
     sql = "SELECT lol.lol_id, student.name FROM lol INNER JOIN student ON lol.phone=student.phone"
     conn = mysql.connect()
@@ -254,7 +257,40 @@ def lol_opgg():
         info['kda'] = kda.replace('\n', '').replace('\t', '').replace('KDA', ' ')
         info['played'] = played.replace('\n', '').replace('\t', '')[:3].replace('%', '') + '%'
         lol.append(info)
-    return lol
+    temp = []
+    for i in lol:
+        temp.append(int(i['played'].replace('%','')))
+    temp.sort(reverse=True)
+
+    result = []
+    for j in temp:
+        for i in lol:                
+            if i['played'] == str(j)+'%':
+                result.append(i)
+    return result
+
+def tetrisrank():
+    conn = mysql.connect()
+    cur = conn.cursor()
+    sql = "SELECT * FROM game WHERE game_name='테트리스' ORDER BY score DESC"
+    cur.execute(sql)
+    result = cur.fetchall()
+    conn.close()
+    return result
+
+def early_bird():
+    try:
+        conn = mysql.connect()
+        cur = conn.cursor()
+        now = datetime.datetime.now().strftime('%Y-%m-%d')
+        print(now)
+        sql = "SELECT * FROM attendance WHERE DATE(p_day) = " + "'" +now+ "'" + " ORDER BY p_day ASC"
+        cur.execute(sql)
+        result = cur.fetchall()
+        conn.close()
+    except:
+        result = ['없음', '없음', '없음']
+    return result
 
 if __name__=='__main__':
     app.run(debug=True)

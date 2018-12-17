@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DB반 스케줄</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <style type="text/css">
+        body,h1,h2,h3,h4,h5,h6 {
+            font-family: "NanumSquare", sans-serif;
+            font-size: 14px;
+            }
+        .w3-bar-block .w3-bar-item {padding:20px}
+        span {
+            margin-left: 30px;
+        }
+        a:link {
+            text-decoration: none;
+        }
+        body {
+            background-color: #ffffff;
+            margin: 40px 10px;
+            padding: 0;
+        }
+    
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        } 
+    </style>
+    <link rel='stylesheet' href='../static/js/fullcalendar.css' />
+
+    <script src='../static/js/lib/jquery.min.js'></script>
+    <script src='../static/js/lib/moment.min.js'></script>
+    <script src='../static/js/fullcalendar.js'></script>
+    <script type='text/javascript' src='../static/js/gcal.js'></script>
+    <script type='text/javascript'>
+        $(function() {
+          $('#calendar').fullCalendar({
+            Boolean, default: true,
+            height:600, 
+            googleCalendarApiKey: 'AIzaSyCdb6abiqKlh5HODkDnp_QOiIdx-Uj24qY',
+            events: {
+              googleCalendarId: 'tdqovds6pog23akf3umio7n068@group.calendar.google.com',
+              className: 'gcal-event' // an option!
+            },
+            header: {
+                left: 'prev,next today myCustomButton',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            }
+          });
+        });
+        
+        </script>
+</head> 
+<body>
+        <!-- Sidebar (hidden by default) -->
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+            <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+            <a href="/" class="w3-bar-item w3-button">Home</a>
+            <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">내 출석 보기</a>
+            <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+            <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+            <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+    </nav>
+    
+    <!-- Top menu -->
+    <div class="w3-top">
+    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+        <div class="w3-right w3-padding-16">{{user_info[0].name}}&nbsp;님&nbsp;&nbsp;</div>
+        <div class="w3-center w3-padding-16" id="mag">DB Magazine</div>
+    </div>
+    </div>
+    <div id='calendar' style="max-width:1200px;margin-top:100px">
+
+    </div>
+    <script>
+        // Script to open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+        
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+    </script>
+
+   
+</body>
+</html>
