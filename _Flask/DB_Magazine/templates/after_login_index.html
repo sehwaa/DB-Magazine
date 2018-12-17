@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<title>DB Magazine</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<style>
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body,h1,h2,h3,h4,h5,h6 {font-family: "NanumSquare", sans-serif}
+.w3-bar-block .w3-bar-item {padding:20px}
+body{
+  background-color: #ffffff;
+}
+span {
+    margin-left: 30px;
+}
+a:link {
+    text-decoration: none;
+}
+.w3-third{
+  　-moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+}
+figure.snip1384 {
+  font-family: 'NanumSquare', sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 0.5px;
+  width: 100%;
+  color: #ffffff;
+  text-align: left;
+  font-size: 16px;
+  background-color: #000000;
+}
+figure.snip1384 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+figure.snip1384 img {
+  max-width: 100%;
+  backface-visibility: hidden;
+  vertical-align: top;
+}
+figure.snip1384:after,
+figure.snip1384 figcaption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+figure.snip1384:after {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.65);
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+  opacity: 0;
+}
+figure.snip1384 figcaption {
+  z-index: 1;
+  padding: 40px;
+}
+figure.snip1384 h3,
+figure.snip1384 .links {
+  width: 100%;
+  margin: 5px 0;
+  padding: 0;
+}
+figure.snip1384 h3 {
+  line-height: 1.1em;
+  font-weight: 700;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  opacity: 0;
+}
+figure.snip1384 p {
+  font-size: 0.8em;
+  font-weight: 300;
+  letter-spacing: 1px;
+  opacity: 0;
+  top: 50%;
+  -webkit-transform: translateY(40px);
+  transform: translateY(40px);
+}
+figure.snip1384 i {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 20px 25px;
+  font-size: 34px;
+  opacity: 0;
+  -webkit-transform: translateX(-10px);
+  transform: translateX(-10px);
+}
+figure.snip1384 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+figure.snip1384:hover img,
+figure.snip1384.hover img {
+  zoom: 1;
+  filter: alpha(opacity=50);
+  -webkit-opacity: 0.5;
+  opacity: 0.5;
+}
+figure.snip1384:hover:after,
+figure.snip1384.hover:after {
+  opacity: 1;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+figure.snip1384:hover h3,
+figure.snip1384.hover h3,
+figure.snip1384:hover p,
+figure.snip1384.hover p,
+figure.snip1384:hover i,
+figure.snip1384.hover i {
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+</style>
+<body>
+
+<!-- Sidebar (hidden by default) -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">내 출석 보기</a>
+    <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+    <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+    <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+</nav>
+
+<!-- Top menu -->
+<div class="w3-top">
+  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+    <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+    <div class="w3-right w3-padding-16">{{user_info[0].name}}&nbsp;님&nbsp;&nbsp;</div>
+    <div class="w3-center w3-padding-16" id="mag">DB Magazine</div>
+  </div>
+</div>
+  
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+
+  <!-- First Photo Grid-->
+  <div class="w3-row-padding w3-padding-30 w3-center" id="food">
+    <div class="w3-third" style="background-color: #f8f8f8; height: 510px">
+      <h4 style="text-align:left; margin-top:25px; margin-left:10px; margin-bottom: 25px; font-weight: bold">출석 체크</h4>
+      <figure class="snip1384">
+          <img src="../static/img/encore.png" style="width:100%; height:413px"/>
+          <figcaption>
+              <h3>출석하기!</h3>
+              <p>
+                  Go!
+              </p><i class="ion-ios-arrow-right"></i>
+              <br><br>
+          </figcaption>
+          <a href="/attendance"></a>
+      </figure>
+    </div>
+    <div class="w3-third">
+      <img src="../static/img/steak.jpg" alt="Steak" style="width:100%">
+      <h3>반스케쥴</h3>
+      <p>달력형식으로</p>
+    </div>
+    <div class="w3-third" style="background-color: #f8f8f8">
+      <h4 style="text-align:left; margin-top:25px; margin-left:10px; margin-bottom: 25px">금주의 게임왕</h4>
+      <figure class="snip1384">
+          <img src="../static/img/tetris.jpg" style="width:100%"/>
+          <figcaption>
+              <h3>TETRIS</h3>
+              <p>
+                  <img src="../static/img/crown.png" width="20px" height="20px">
+                  &nbsp;{{gameranking[0].name}}&nbsp;&nbsp;&nbsp;{{gameranking[0].score}}<br><br>
+                  <img src="../static/img/second.png" width="20px" height="20px">
+                  &nbsp;{{gameranking[1].name}}&nbsp;&nbsp;&nbsp;{{gameranking[1].score}}<br><br>
+                  <img src="../static/img/third_.png" width="20px" height="20px">
+                  &nbsp;{{gameranking[2].name}}&nbsp;&nbsp;&nbsp;{{gameranking[2].score}}
+              </p><i class="ion-ios-arrow-right"></i>
+              <br><br>
+          </figcaption>
+          <a href="/tetris_ranking"></a>
+      </figure>            
+  
+      <figure class="snip1384">
+              <img src="../static/img/leagueoflegends.jpg" alt="sample83" />
+              <figcaption>
+                  <h3>League Of Legends</h3>
+                  <p>
+                    <img src="../static/img/crown.png" width="20px" height="20px">
+                    &nbsp;{{lol[0].name}}&nbsp;&nbsp;&nbsp;{{lol[0].played}}&nbsp;<br><br>
+                    <img src="../static/img/second.png" width="20px" height="20px">
+                    &nbsp;{{lol[1].name}}&nbsp;&nbsp;&nbsp;{{lol[1].played}}&nbsp;<br><br>
+                    <!-- <img src="../static/img/XinZhao.png" width="20px" height="20px" style="border-radius: 10px"><br><br> -->
+                    <img src="../static/img/third_.png" width="20px" height="20px">
+                    &nbsp;{{lol[2].name}}&nbsp;&nbsp;&nbsp;{{lol[2].played}}&nbsp;<br><br>
+                    <!-- <img src="../static/img/Ezreal.png" width="20px" height="20px" style="border-radius: 10px"><br><br> -->
+                  </p><i class="ion-ios-arrow-right"></i>
+              </figcaption>
+              <a href="/lol_ranking"></a>
+      </figure>
+  </div>
+  </div>
+  
+  <!-- Second Photo Grid-->
+  <div class="w3-row-padding w3-padding-16 w3-center">
+    <div class="w3-third">
+      <img src="../static/img/popsicle.jpg" alt="Popsicle" style="width:100%">
+      <h3>김나영</h3>
+      <p>게시판 O, 클릭 시 게시글로 이동, 조회수 높은글 / 최신글</p>
+    </div>
+    <div class="w3-third">
+      <img src="../static/img/salmon.jpg" alt="Salmon" style="width:100%">
+      <h3>자유게시판</h3>
+      <p>게시판 O, 클릭 시 게시글 보여주기, 조회수 높은글 / 최신글</p>
+    </div>
+    <div class="w3-third">
+      <img src="../static/img/sandwich.jpg" alt="Sandwich" style="width:100%">
+      <h3>식사메뉴추천</h3>
+      <p>게시판 X, 클릭 시 전체메뉴보여주기, 오늘의 추천메뉴(날마다 변경)</p>
+    </div>
+  </div>
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+
+ /* Demo purposes only */
+ $(".hover").mouseleave(
+    function () {
+      $(this).removeClass("hover");
+    }
+  );
+</script>
+</body>
+</html>

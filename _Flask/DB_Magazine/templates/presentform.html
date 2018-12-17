@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>출석입력</title>
+    <style>
+     @font-face {
+            src: url('../static/NanumSquareB.ttf');
+            font-family: "nanum";
+        }
+        * {
+            font-family: "nanum";
+        }
+        .jumbotron{
+            background-image: url('../static/present1.JPG');
+            width: 100%;
+            background-position: center;
+            text-shadow: black 0.2em 0.2em 0.2em;
+            color:white;     
+        }
+        .container {
+            text-align: center;
+        }
+        .container2 {
+            text-align:center;   
+            margin: 100px;
+            background-color:darkslategray;
+        }
+        
+        .container2 h5{
+            margin-top:15px;
+            color:white;
+        }
+
+        .container3{
+            display: inline-block;
+            border: 3px solid gray;
+            padding:100px;
+            
+
+        }
+        
+        #bb input {
+           margin-top: 15px;
+        }
+
+    </style>
+    <script>
+        var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var currTime = hour+':'+minute;
+        function check(){
+            if(form1.name.value ==""){
+                alert('이름을 반드시 넣어주세요!');
+                form1.name.focus()
+                return;
+            }
+            if((hour == 9 & minute >=11) | hour >= 10 ){
+                alert('당신은 지각이에요~루루루룰')
+                document.location.href='/late'
+                return;
+            }
+            form1.submit()
+        }
+    </script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+            <div class="jumbotron">
+                <h1 class='text-center'>어머님 저 PC방 아니고 엔코아에요~</h1>
+                </div>
+            <div class="container3">
+                    <table class="present_table">
+                            <tbody>
+                                <th>출석입력</th>
+                                <form name='form1' action="/present" method="POST" encType="multiplart/form-data">
+                                    <tr>
+                                        <th>이름: </th>
+                                        <td><input type="text" placeholder="이름을 입력하세요. " name="name" class="form-control"/></td>
+                                    </tr>
+                                    <tr id="bb">
+                                        <td colspan="2">
+                                            <input type="button" value="출석" onclick="check()">
+                                        </td>
+                                    </tr>
+                                </form>
+                            </tbody>
+                        </table>
+            </div>
+        </div>
+        <div class='container2'>
+                <div class="row">
+                        <div class='col-xs-5 col-md-6'>
+                            <h5>메인으로 돌아가기</h5>
+                            <a class='btn btn-default' href="/attendance">메인으로~</a>
+                        </div>
+                        <div class='col-xs-5 col-md-6'>
+                            <h5>오늘의 얼리버드 보기</h5>
+                            <a class='btn btn-default' href='plist'>출석목록 확인</a>
+                        </div>
+        </div>
+        </div>
+                    
+</body>
+</html>

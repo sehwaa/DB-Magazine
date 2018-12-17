@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DB반 테트리스 랭킹</title>
+</head>
+<body>
+    <table class="ranking-table">
+        <colgroup>
+            <col width="100">
+            <col width="100">
+            <col width="230">
+            <col width="198">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="ranking-table_header">순위</th>
+                <th class="ranking-table_header">이름</th>
+                <th class="ranking-table_header">점수</th>
+                <th class="ranking-table_header">날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rank in ranking %}
+                <tr class="ranking-table__row">
+                    <td class="rankng-table__cell">
+                        {{loop.index}}
+                    </td>
+                    <td class="rankng-table__cell">
+                        {{rank.name}}
+                    </td>
+                    <td class="rankng-table__cell">
+                        {{rank.score}}
+                    </td>
+                    <td class="rankng-table__cell">
+                        {{rank.score_date}}
+                    </td>
+                </tr>        
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DB반 리그오브레전드 랭킹</title>
+</head>
+<body>
+    <table class="ranking-table">
+        <colgroup>
+            <col width="100">
+            <col width="100">
+            <col width="230">
+            <col width="100">
+            <col width="230">
+            <col width="198">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="ranking-table_header">번호</th>
+                <th class="ranking-table_header">이름</th>
+                <th class="ranking-table_header">닉네임</th>
+                <th class="ranking-table_header">KDA</th>
+                <th class="ranking-table_header">MOST CHAMPION</th>
+                <th class="ranking-table_header">승률</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for id in lol %}
+                <tr class="ranking-table__row">
+                    <td class="rankng-table__cell">
+                        {{loop.index}}
+                    </td>
+                    <td class="rankng-table__cell">
+                        {{id.name}}
+                    </td>
+                    <td class="rankng-table__cell">
+                        {{id.lol_id}}
+                    </td>
+                    <td class="rankng-table__cell">
+                        {{id.kda}}
+                    </td>
+                    <td class="rankng-table__cell">
+                        {{id.most_champion}}
+                    </td>
+                    <td class="rankng-table__cell">
+                        {{id.played}}
+                    </td>
+                </tr>        
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
