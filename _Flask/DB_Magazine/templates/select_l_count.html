@@ -4,15 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
     <title>지각조회</title>
     <style>
-            @font-face {
-                   src: url('../static/NanumSquareB.ttf');
-                   font-family: "nanum";
-               }
-               * {
-                   font-family: "nanum";
-               }
+            @import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
+            @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+            @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+            * {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            }
+            * {font-family: "NanumSquare", sans-serif}
+            .w3-bar-block .w3-bar-item {padding:20px}
+            body{
+            background-color: #ffffff;
+            }
+            span {
+                margin-left: 30px;
+            }
+            a:link {
+                text-decoration: none;
+            }
+            .w3-third{
+            　-moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+            }
                .jumbotron{
                    background-image: url('../static/ga.JPG');
                    width: 100%;
@@ -36,7 +56,43 @@
         <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
-    <div class="container">
+    {%if user_info[0].name == "김나영"%}
+    <!-- Sidebar (hidden by default) -->
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+        <a href="/" class="w3-bar-item w3-button">Home</a>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">칼럼쓰기</a>
+        <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+        <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+        <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+    </nav>
+    {%elif user_info[0].name == "메멘토"%}
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+        <a href="/" class="w3-bar-item w3-button">Home</a>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">테드 강연 업로드</a>
+        <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+        <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+        <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+    </nav>
+    {%else%}
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+        <a href="/" class="w3-bar-item w3-button">Home</a>
+        <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+        <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+        <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+    </nav>
+    {%endif%}
+    <!-- Top menu -->
+    <div class="w3-top">
+            <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+                <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+                <div class="w3-right w3-padding-16">{{user_info[0].name}}&nbsp;님&nbsp;&nbsp;</div>
+                <div class="w3-center w3-padding-16" id="mag">DB Magazine</div>
+            </div>
+        </div>
+    <div class="container" style="max-width:1200px;margin-top:100px">
         <div class="jumbotron">
             <h1 class='text-center'>나놈은 몇번 늦었을까?</h1>
         </div>
@@ -54,7 +110,9 @@
         </tr>
         {% endfor %}
     </table>
-    <div class='container2'>
+    
+
+    <div class='container2' >
             <div class="row">
                     <div class='col-xs-5 col-md-6'>
                         <h5>메인으로 돌아가기</h5>
@@ -65,5 +123,14 @@
                         <a class='btn btn-default' href='late'>지각입력하기</a>
                     </div>
     </div>
+    <script>
+    function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    }
+    
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+    </script>
 </body>
 </html>

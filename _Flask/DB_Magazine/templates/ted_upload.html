@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <title>강연 업로드하기</title>
+    <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "NanumSquare", sans-serif}
+    .w3-bar-block .w3-bar-item {padding:20px}
+    body{
+    background-color: #ffffff;
+    }
+    span {
+        margin-left: 30px;
+    }
+    a:link {
+        text-decoration: none;
+    }
+    .w3-third{
+    　-moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+    }
+    @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+    *, *:before, *:after {
+    box-sizing: border-box;
+    }
+    body, html {
+    background-color: #ffffff;
+    font-family: 'NanumSquare'
+    }
+    .table {
+    display: table;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    }
+    .table-cell {
+    display: table-cell;
+    vertical-align: middle;
+    }
+    #decoration, #decoration2, #decoration3 {
+    position: absolute;
+    background-color: yellow;
+    width: 420px;
+    height: 70px;
+    opacity: 0;
+    border-radius: 10px;
+    }
+    #decoration2 {
+    background-color: magenta;
+    }
+    #decoration3 {
+    background-color: cyan;
+    }
+    .leader {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+    width: 420px;
+    height: 390px;
+    }
+    li {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    height: 70px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 5px rgba(black, 0.1);
+    -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+    }
+    .list_num {
+    float: left;
+    line-height: 40px;
+    font-size: 18px;
+    color: rgba(black, 0.65);
+    margin: 15px;
+    font-weight: bold;
+    width: 20px;
+    text-align: right;
+    margin-left: 10px;
+    }
+    h2 {
+    display: block;
+    margin: 0;
+    font-size: 18px;
+    line-height: 40px;
+    margin-top: 15px;
+    padding-right: 20px;
+    }
+    .number {
+    float: right;
+    font-weight: bold;
+    color: rgba(black, 0.65);
+    transition: color 0.3s;
+    }
+        
+    img {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin: 15px 20px;
+    margin-left: 0;
+    border-radius: 100%;
+    }
+    .submitbutton{
+        text-align: center;
+        margin-top: 20px;
+    }
+    </style>
+</head>
+<body>
+    {%if user_info[0].name == "김나영"%}
+    <!-- Sidebar (hidden by default) -->
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+        <a href="/" class="w3-bar-item w3-button">Home</a>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">칼럼쓰기</a>
+        <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+        <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+        <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+    </nav>
+    {%elif user_info[0].name == "메멘토"%}
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+        <a href="/" class="w3-bar-item w3-button">Home</a>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">테드 강연 업로드</a>
+        <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+        <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+        <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+    </nav>
+    {%else%}
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+        <a href="/" class="w3-bar-item w3-button">Home</a>
+        <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+        <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+        <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+    </nav>
+    {%endif%}
+    
+    <!-- Top menu -->
+    <div class="w3-top">
+        <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+        <div class="w3-right w3-padding-16">{{user_info[0].name}}&nbsp;님&nbsp;&nbsp;</div>
+        <div class="w3-center w3-padding-16" id="mag">DB Magazine</div>
+        </div>
+    </div>
+
+    <form action="/tedupload" method="POST">
+        <div class="table">
+            <div class="table-cell">
+                <ul class="leader">
+                    <li>
+                        <input type="text" name="ted_url" class="form-control" placeholder="URL" style="
+                        background-color: #f8f8f8;
+                        border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
+                        width: 100%; height: 100%;">
+                    </li>
+                    <div class = "submitbutton">
+                        <input type="submit" value="올리기" style="text-align:center">
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </form>
+    
+    <script>
+        function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        }
+        
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+
+    </script>
+</body>
+</html>

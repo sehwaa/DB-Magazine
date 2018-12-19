@@ -1,3 +1,20 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>테드 강연 보기</title>
+</head>
+<body>
+    {%for link in url%}
+    {{link.tdate}}
+        <a href="{{link.ted_url}}">강연보기</a> <br>
+    {%endfor%}
+
+</body>
+</html> -->
+
 <!DOCTYPE html>
 <html>
 <title>DB Magazine</title>
@@ -139,17 +156,34 @@ figure.snip1384.hover i {
 }
 </style>
 <body>
-
+{%if user_info[0].name == "김나영"%}
 <!-- Sidebar (hidden by default) -->
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
     <a href="/" class="w3-bar-item w3-button">Home</a>
-    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">내 출석 보기</a>
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">칼럼쓰기</a>
     <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
     <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
     <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
 </nav>
+{%elif user_info[0].name == "메멘토"%}
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+    <a href="/" class="w3-bar-item w3-button">Home</a>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">테드 강연 업로드</a>
+    <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+    <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+    <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+</nav>
+{%else%}
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+    <a href="/" class="w3-bar-item w3-button">Home</a>
+    <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+    <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+    <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+</nav>
+{%endif%}
 
 <!-- Top menu -->
 <div class="w3-top">
@@ -162,94 +196,26 @@ figure.snip1384.hover i {
   
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+        {%for link in url%}
+            <div class="w3-row-padding w3-padding-16" style="background-color:#f8f8f8;-moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+            -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;  margin-bottom: 30px">
+            <h3 style="text-align:center; margin-left:10px; margin-bottom: 25px; font-weight: bold">{{link.tdate}}</h3>
+            <figure class="snip1384">
+                <img src="../static/img/watching_ted.jpg" alt="Sandwich" style="width:100%">
+                <figcaption>
+                    <h3 style="font-size:50px; text-align: center; margin-top: 180px">시청하기</h3>
+                    <p style="text-align: center;font-size:25px">
+                        시청하러 가즈아
+                    </p><i class="ion-ios-arrow-right"></i>
+                </figcaption>
+                <a href="{{link.ted_url}}"></a>
+            </figure>
+            </div>
+        {%endfor%}
+    
+  </div>
 
-  <!-- First Photo Grid-->
-  <div class="w3-row-padding w3-padding-30 w3-center" id="food">
-    <div class="w3-third" style="background-color: #f8f8f8; height: 510px">
-      <h4 style="text-align:left; margin-top:25px; margin-left:10px; margin-bottom: 25px; font-weight: bold">출석 체크</h4>
-      <figure class="snip1384">
-          <img src="../static/img/encore.png" style="width:100%; height:413px"/>
-          <figcaption>
-              <h3>출석하기!</h3>
-              <p>
-                  Go!
-              </p><i class="ion-ios-arrow-right"></i>
-              <br><br>
-          </figcaption>
-          <a href="/attendance"></a>
-      </figure>
-    </div>
-    <div class="w3-third" style="background-color: #f8f8f8; height: 510px">
-        <h4 style="text-align:left; margin-top:25px; margin-left:10px; margin-bottom: 25px; font-weight: bold">DB반 일정</h4>
-        <figure class="snip1384">
-            <img src="../static/img/schedule.jpg" style="width:100%; height:413px"/>
-            <figcaption>
-                <h3>DB Schedule</h3>
-                <p>
-                    프로젝트 일정 및 기타 일정
-                </p><i class="ion-ios-arrow-right"></i>
-                <br><br>
-            </figcaption>
-            <a href="/calendar"></a>
-        </figure>
-    </div>
-    <div class="w3-third" style="background-color: #f8f8f8">
-      <h4 style="text-align:left; margin-top:25px; margin-left:10px; margin-bottom: 25px; font-weight: bold">금주의 게임왕</h4>
-      <figure class="snip1384">
-          <img src="../static/img/tetris.jpg" style="width:100%"/>
-          <figcaption>
-              <h3>TETRIS</h3>
-              <p>
-                  <img src="../static/img/crown.png" width="20px" height="20px">
-                  &nbsp;{{gameranking[0].name}}&nbsp;&nbsp;&nbsp;{{gameranking[0].score}}<br><br>
-                  <img src="../static/img/second.png" width="20px" height="20px">
-                  &nbsp;{{gameranking[1].name}}&nbsp;&nbsp;&nbsp;{{gameranking[1].score}}<br><br>
-                  <img src="../static/img/third_.png" width="20px" height="20px">
-                  &nbsp;{{gameranking[2].name}}&nbsp;&nbsp;&nbsp;{{gameranking[2].score}}
-              </p><i class="ion-ios-arrow-right"></i>
-              <br><br>
-          </figcaption>
-          <a href="/tetris_ranking"></a>
-      </figure>            
-  
-      <figure class="snip1384">
-              <img src="../static/img/leagueoflegends.jpg" alt="sample83" />
-              <figcaption>
-                  <h3>League Of Legends</h3>
-                  <p>
-                    <img src="../static/img/crown.png" width="20px" height="20px">
-                    &nbsp;{{lol[0].name}}&nbsp;&nbsp;&nbsp;{{lol[0].played}}&nbsp;<br><br>
-                    <img src="../static/img/second.png" width="20px" height="20px">
-                    &nbsp;{{lol[1].name}}&nbsp;&nbsp;&nbsp;{{lol[1].played}}&nbsp;<br><br>
-                    <!-- <img src="../static/img/XinZhao.png" width="20px" height="20px" style="border-radius: 10px"><br><br> -->
-                    <img src="../static/img/third_.png" width="20px" height="20px">
-                    &nbsp;{{lol[2].name}}&nbsp;&nbsp;&nbsp;{{lol[2].played}}&nbsp;<br><br>
-                    <!-- <img src="../static/img/Ezreal.png" width="20px" height="20px" style="border-radius: 10px"><br><br> -->
-                  </p><i class="ion-ios-arrow-right"></i>
-              </figcaption>
-              <a href="/lol_ranking"></a>
-      </figure>
-  </div>
-  </div>
-  
-  <!-- Second Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-center">
-    <div class="w3-third">
-      <img src="../static/img/popsicle.jpg" alt="Popsicle" style="width:100%">
-      <h3>김나영</h3>
-      <p>게시판 O, 클릭 시 게시글로 이동, 조회수 높은글 / 최신글</p>
-    </div>
-    <div class="w3-third">
-      <img src="../static/img/salmon.jpg" alt="Salmon" style="width:100%">
-      <h3>자유게시판</h3>
-      <p>게시판 O, 클릭 시 게시글 보여주기, 조회수 높은글 / 최신글</p>
-    </div>
-    <div class="w3-third">
-      <img src="../static/img/sandwich.jpg" alt="Sandwich" style="width:100%">
-      <h3>식사메뉴추천</h3>
-      <p>게시판 X, 클릭 시 전체메뉴보여주기, 오늘의 추천메뉴(날마다 변경)</p>
-    </div>
-  </div>
 <script>
 // Script to open and close sidebar
 function w3_open() {

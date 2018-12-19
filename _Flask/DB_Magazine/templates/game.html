@@ -4,21 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
     <title>게임하기</title>
-<style>
-</style>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
+@import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body,h1,h2,h3,h4,h5,h6 {font-family: "NanumSquare", sans-serif}
+.w3-bar-block .w3-bar-item {padding:20px}
+body{
+  background-color: #ffffff;
+}
+span {
+    margin-left: 30px;
+}
+a:link {
+    text-decoration: none;
+}
+.w3-third{
+  　-moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+}
+        @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
+        *, *:before, *:after {
+        box-sizing: border-box;
+        }
+        body, html {
+        background-color: #ffffff;
+        font-family: 'NanumSquare'
+        }
+        .table {
+        display: table;
+        width: 100%;
+        position: absolute;
+        height: 100%;
+        }
+        .table-cell {
+        display: table-cell;
+        vertical-align: middle;
+        }
+        #decoration, #decoration2, #decoration3 {
+        position: absolute;
+        background-color: yellow;
+        width: 420px;
+        height: 70px;
+        opacity: 0;
+        border-radius: 10px;
+        }
+        #decoration2 {
+        background-color: magenta;
+        }
+        #decoration3 {
+        background-color: cyan;
+        }
+        .leader {
+        list-style-type: none;
+        padding: 0;
+        margin: 0 auto;
+        width: 420px;
+        height: 390px;
+        }
+        li {
+        background-color: #f8f8f8;
+        border-radius: 5px;
+        height: 70px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 5px rgba(black, 0.1);
+        -moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+        }
+        .list_num {
+        float: left;
+        line-height: 40px;
+        font-size: 18px;
+        color: rgba(black, 0.65);
+        margin: 15px;
+        font-weight: bold;
+        width: 20px;
+        text-align: right;
+        margin-left: 10px;
+        }
+        h2 {
+        display: block;
+        margin: 0;
+        font-size: 18px;
+        line-height: 40px;
+        margin-top: 15px;
+        padding-right: 20px;
+        }
+        .number {
+        float: right;
+        font-weight: bold;
+        color: rgba(black, 0.65);
+        transition: color 0.3s;
+        }
+            
+        img {
+        width: 40px;
+        height: 40px;
+        float: left;
+        margin: 15px 20px;
+        margin-left: 0;
+        border-radius: 100%;
+        }
+    </style>
 </head>
 <body>
-    <div style="float: left; width: 50%;">
-        <iframe src="http://flgamenara.tistory.com/26" width="99.7%" height=900px>
-        </iframe>          
+    {%if user_info[0].name == "김나영"%}
+    <!-- Sidebar (hidden by default) -->
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+        <a href="/" class="w3-bar-item w3-button">Home</a>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">칼럼쓰기</a>
+        <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+        <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+        <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+    </nav>
+    {%elif user_info[0].name == "메멘토"%}
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+        <a href="/" class="w3-bar-item w3-button">Home</a>
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">테드 강연 업로드</a>
+        <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+        <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+        <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+    </nav>
+    {%else%}
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
+        <a href="/" class="w3-bar-item w3-button">Home</a>
+        <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
+        <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
+        <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
+    </nav>
+    {%endif%}
+    <div style="float: left; width: 50%; height: 800px;">
+        <embed src="http://tetrisonline.pl/toj_flash/Marathon.html" width="100%" height="900px">
     </div>
     <form action="/game" method="POST">
         <div style="float: left; width: 50%;">
-                기록 : <input type="text" name="score"><br>
-                양심껏 적자 솔직히<br>
-                <input type="submit" value="기록 갱신">
+            <ul class="leader">
+                <li>
+                    <input type="text" name="score" class="form-control" placeholder="양심껏 점수 적자" style="
+                    background-color: #f8f8f8;
+                    border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
+                    width: 100%; height: 100%;">
+                </li>
+                <div class = "submitbutton">
+                    <input type="submit" value="기록 갱신!" style="text-align:center">
+                </div>
+            </ul>
         </div>
     </form>
+    <script>
+    function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    }
+    
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+    }
+    </script>
 </body>
 </html>
