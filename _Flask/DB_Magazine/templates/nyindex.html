@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>김기자 칼럼</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/styles/layout.css" type="text/css">
+<!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
+<style>
+@import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+
+
+body{
+    font-family: 'NanumSquare', sans-serif;
+    height: 100%;
+} 
+
+#title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#button1 {
+  font-family: 'NanumSquare', sans-serif;
+  width:100px;
+  background-color: #C0BAB6;
+  border: none;
+  color:rgb(46, 45, 45);
+  padding: 8px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 4px;
+  cursor: pointer;
+  border-radius:5px;
+  margin-left: 350px; 
+}
+
+#button2 {
+  font-family: 'NanumSquare', sans-serif;
+  width:100px;
+  background-color: #C0BAB6;
+  border: none;
+  color:rgb(46, 45, 45);
+  padding: 8px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 4px;
+  cursor: pointer;
+  border-radius:5px;
+}
+/* #copyright{
+  position : absolute;
+} */
+
+#container{
+  height: 100%;
+}
+</style>
+
+
+
+</head>
+
+<body>
+  <div class="wrapper row1">
+    <header id="header" class="clear">
+      <div id="hgroup">
+        <h1><a href="/column">김기자 칼럼</a>
+          <img src="../static/images/w2.png" width="50" height="50">  
+        </h1>
+        <h2>매력터지는 DB반 아이들의 이야기 :)</h2>
+      </div>
+    </header>
+  </div>
+  <!-- content -->
+  <div class="wrapper row2">
+    <div id="container" class="clear">
+      
+      <div id="homepage">
+        <!-- Services -->
+        <section id="services" class="clear">
+          <article class="one_third">
+            <figure><a href="/story1/"><img src="../static/images/메인1.PNG" width="290" height="300" alt=""></a>
+              <figcaption>
+                <br>
+                <h2 id="title">첫번째 이야기</h2><br>
+                <p>함께한지 벌써 4개월! <br>서로에게 하고싶은 말!</p>
+                <footer class="more"><a href="/story1/">뒷이야기가 궁금하다면? &raquo;</a></footer>
+              </figcaption>
+            </figure>
+          </article>
+          <article class="one_third">
+            <figure><a href="/story2/"><img src="../static/images/메인2.png" width="290" height="300" alt=""></a>
+              <figcaption>
+                <br>
+                <h2 id="title">두번째 이야기</h2><br>
+                <p>소확행.소소하지만 확실한 행복<br>당신의 소확행은 무엇인가요?</p>
+                <footer class="more"><a href="/story2/">뒷이야기가 궁금하다면? &raquo;</a></footer>
+              </figcaption>
+            </figure>
+          </article>
+          <article class="one_third lastbox">
+            <figure><a href="/story3/"><img src="../static/images/메인3.jpg" width="290" height="300" alt=""></a>
+              <figcaption>
+                <br>
+                <h2 id="title">세번째 이야기</h2><br>
+                <p>10자 토크.<br>10자로 묻고 답하기.</p>
+                <footer class="more"><a href="/story3/">뒷이야기가 궁금하다면? &raquo;</a></footer>
+              </figcaption>
+            </figure>
+          </article>
+        </section>
+        <div align='right'>
+          <!-- <form action="write" method="post"> -->
+          {%if user_info[0].name == "김나영"%}
+          <input type="submit" value="칼럼쓰러가기" id="button1" onclick = "location.href='/cboard'">
+          <input type="reset" value="리스트로 보기" id="button2" onclick = "location.href='/list'"> 
+          {%else%}
+          <input type="reset" value="리스트로 보기" id="button2" onclick = "location.href='/list'"> 
+          {%endif%}
+         </div>
+      
+    </div>
+
+
+  </div>
+</div>
+
+
+
+<!-- Copyright -->
+<div class="wrapper row4">
+  <footer id="copyright" class="clear">
+    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved_KimNayoung</p>
+    <p class="fl_right">Column by nayoungeeee</p>
+  </footer>
+</div>
+</body>
+</html>

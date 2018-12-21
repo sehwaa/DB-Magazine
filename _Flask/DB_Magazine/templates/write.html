@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>칼럼쓰러왔습니다^^</title>
+    <style>
+    @import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+    body {
+        font-family: 'NanumSquare', sans-serif;
+        color: rgb(46, 45, 45);
+    }
+    h1 {
+        color:rgb(49, 48, 48);
+        text-shadow :  2px 2px 2px rgba(178, 168, 220, 0.496);
+    }
+    table {
+        width: 600px;
+        height: 600px;
+        margin-left: 1cm;
+        border: 2px solid #8da2bfce;
+        border-collapse: collapse;
+    }
+    tr {
+        border: 2px solid #8da2bfce;
+    }
+    th {
+        height: 40px;
+        border: 2px solid #8da2bfce;
+    }
+    #c_td {
+        height: 450px;
+        border: 2px solid #8da2bfce;
+    }
+    th:nth-child(2n+1), c_td:nth-child(2n+1) {
+        background-color: #88a4b87e;
+    }
+    #button1 {
+        width:100px;
+        background-color: #88a4b87e;
+        border: none;
+        color:rgb(46, 45, 45);
+        padding: 8px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        margin: 4px;
+        cursor: pointer;
+        border-radius:10px;
+        margin-left: 350px; 
+        }
+        #button2 {
+        width:100px;
+        background-color: #88a4b87e;
+        border: none;
+        color:rgb(46, 45, 45);
+        padding: 8px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        margin: 4px;
+        cursor: pointer;
+        border-radius:10px;
+        }
+
+    </style>
+    <script>
+        function main() {
+            location.href='/'
+        }
+    </script>
+</head>
+<body>
+    <h1 id='wh1'>&nbsp; &nbsp;칼럼 쓰기
+    <img src="../static/images/w2.png" width="47" height="40"></h1>   
+    <form action="write" method="post">
+        <table width="70" border="1"> 
+            <tr>
+                <th>제목</th>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <th>작성날짜</th>
+                <td><input type ="text" name="regdate"></td>
+            </tr>
+            <tr>
+                <th id='c_td'>내용</th>
+                <td><textarea name="content" cols="80" rows="40"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="쓰기" id="button1"> 
+                    <input type="reset" value="취소" id="button2" onclick="main()">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

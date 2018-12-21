@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/styles/layout.css" type="text/css">
+    <title>확인해보실까요^^</title>
+    <style>
+    @import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+    body {
+        font-family: 'NanumSquare', sans-serif;
+        color: rgb(46, 45, 45);
+    
+    }
+    #h1{
+        font-size:40px; 
+        background-color:#263238; 
+        color:#C0BAB6;
+    }
+    
+    #h2{
+        font-size:13px; 
+        background-color:#263238;
+        color:#C0BAB6;
+    }
+
+    #list {
+        background-color: #ffffff;
+        height: 500px;
+        
+    }
+
+    table {
+        width: 800px;
+        /* height: 80px; */
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid #8da2bfce;
+        border-collapse: collapse;
+        /* white-space:nowrap; */
+        max-width:70%;
+        font-size :15px; 
+        color:#263238;
+    }
+    th, tr {
+        height: 30px;
+        width : 25px;
+        border: 2px solid #8da2bfce;
+        text-align: center;
+    }
+    td{
+        height: 80px;
+        border: 2px solid #8da2bfce;
+        text-align: center;
+    }
+    th {
+        background-color: #88a4b87e;
+    }
+    /* #nbtitle {
+        color:#1e46b6;
+        font-weight: bold;
+    } */
+    #listname {
+        font-size: 20px;
+        text-align: center;
+    }
+    .button{
+        background-color: #ffffff;
+    }
+    #button1 {
+        font-family: 'NanumSquare', sans-serif;
+        width:120px;
+        background-color: #C0BAB6;
+        border: none;
+        color:rgb(46, 45, 45);
+        padding: 8px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        margin: 4px;
+        cursor: pointer;
+        border-radius:5px;
+        margin-left: 65%; 
+    }
+    #gomain{
+        font-family: 'NanumSquare', sans-serif;
+        width:120px;
+        background-color: #C0BAB6;
+        border: none;
+        color:rgb(46, 45, 45);
+        padding: 8px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        margin: 4px;
+        cursor: pointer;
+        border-radius:5px;
+    }
+    #gomain2 {
+        font-family: 'NanumSquare', sans-serif;
+        width:120px;
+        background-color: #C0BAB6;
+        border: none;
+        color:rgb(46, 45, 45);
+        padding: 8px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        margin: 4px;
+        cursor: pointer;
+        border-radius:5px;
+        margin-left: 65%; 
+    }
+    a:link{
+        color: #C0BAB6;
+    }
+
+    a:visited{
+        color: #C0BAB6;
+    }
+
+    a:hover{
+        color: #C0BAB6;
+    }
+
+    a:active{
+        color: #C0BAB6;
+    }
+</style>
+</head>
+<body>
+<div>
+    <header id="header" class="clear">
+        <div id="hgroup">
+        <h1><a href="/column">김기자 칼럼</a>
+            <img src="../static/images/w2.png" width="50" height="50">  
+        </h1>
+        <h2 id='h2'>매력터지는 DB반 아이들의 이야기 :)</h2>
+        </div>
+    </header>
+</div>
+<div id='list'>
+    <br>
+    <h1 id='listname'>&nbsp; &nbsp;칼럼 리스트&nbsp;<img src="../static/images/list.png" width="17" height="17"></h1>
+    <br>
+    <table width="450" border="1">
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>3줄 요약</th>
+        <th>날짜</th>
+        <th>내용</th>
+        <th>조회수</th>
+    </tr>
+    {% for nb in lists %}
+    <tr>
+        <td>{{nb.num}}</td>
+        <td id = 'nbtitle'><a href="/read/{{nb.title}}" id='click'>{{nb.title}}</a></td>
+        <td>{{nb.preview}}</a></td>
+        <td>{{nb.tdate}}</td>
+        <td>{{nb.content}}</td>
+        <td>{{nb.hit}}</td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+<div class='button'>
+        <!-- <form action="write" method="post"> -->
+    {%if user_info[0].name == "김나영"%}
+    <input type="submit" value="칼럼쓰러가기" id="button1" onclick = "location.href='/cboard'">
+    <input type="submit" value="[메인으로 돌아가기]" id="gomain" onclick = "location.href='/column'">
+    {%else%}
+    <input type="submit" value="[메인으로 돌아가기]" id="gomain2" onclick = "location.href='/column'">
+    {%endif%}
+    <br><br>
+</div>
+
+
+
+<div class="wrapper row4">
+    <footer id="copyright" class="clear">
+        <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved_KimNayoung</p>
+        <p class="fl_right">Column by nayoungeeee</p>
+    </footer>
+</div>
+
+
+      
+</body>
+</html>

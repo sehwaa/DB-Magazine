@@ -9,12 +9,14 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
 @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); 
+@import url(//cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css);
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-body,h1,h2,h3,h4,h5,h6 {font-family: "NanumSquare", sans-serif}
+body,h1,h2,h3,h4,h5,h6 {font-family: "Nanum Square", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 body{
   background-color: #ffffff;
@@ -31,7 +33,7 @@ a:link {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
 }
 figure.snip1384 {
-  font-family: 'NanumSquare', sans-serif;
+  font-family: 'Nanum Square', sans-serif;
   position: relative;
   overflow: hidden;
   margin: 0.5px;
@@ -140,8 +142,6 @@ figure.snip1384.hover i {
 }
 </style>
 <body>
-
-<!-- Sidebar (hidden by default) -->
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
 </nav>
@@ -157,23 +157,21 @@ figure.snip1384.hover i {
   
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-
-  <div class="w3-row-padding w3-padding-16" style="background-color:#f8f8f8;-moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
+    <div class="w3-row-padding w3-padding-16" style="background-color:#f8f8f8;-moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px; margin-bottom: 30px">
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 30px;  margin-bottom: 30px">
         <h3 style="text-align:center; margin-left:10px; margin-bottom: 25px; font-weight: bold">오늘의 몸풀기 동영상</h3>
         <figure class="snip1384">
             <img src="../static/img/ted_img_img.jpg" alt="Sandwich" style="width:100%">
             <figcaption>
                 <h3 style="font-size:50px; text-align: center; margin-top: 180px">오늘의 Ted 강연</h3>
-                <p style="text-align: center;font-size:25px">
+                <p style="text-align: center;font-size:25px;">
                   오늘은 무슨 재밌는 강연이 있을까?
                 </p><i class="ion-ios-arrow-right"></i>
             </figcaption>
             <a href="/login"></a>
     </figure>
   </div>
-
   <!-- First Photo Grid-->
   <div class="w3-row-padding w3-padding-30 w3-center" id="food">
     <div class="w3-third" style="background-color: #f8f8f8; height: 510px">
@@ -181,9 +179,14 @@ figure.snip1384.hover i {
       <figure class="snip1384">
           <img src="../static/img/encore.png" style="width:100%; height:413px"/>
           <figcaption>
-              <h3>출석하기!</h3>
+              <h3>오늘의 얼리버드</h3>
               <p>
-                  Go!
+                <img src="../static/img/crown.png" width="20px" height="20px">
+                &nbsp;{{early_bird[0].name}}&nbsp;&nbsp;&nbsp;{{early_bird[0].p_day}}<br><br>
+                <img src="../static/img/second.png" width="20px" height="20px">
+                &nbsp;{{early_bird[1].name}}&nbsp;&nbsp;&nbsp;{{early_bird[1].p_day}}<br><br>
+                <img src="../static/img/third_.png" width="20px" height="20px">
+                &nbsp;{{early_bird[2].name}}&nbsp;&nbsp;&nbsp;{{early_bird[2].p_day}}
               </p><i class="ion-ios-arrow-right"></i>
               <br><br>
           </figcaption>
@@ -201,14 +204,13 @@ figure.snip1384.hover i {
                 </p><i class="ion-ios-arrow-right"></i>
                 <br><br>
             </figcaption>
-            <a href="/calendar"></a>
+            <a href="/login"></a>
         </figure>
     </div>
-
-    <div class="w3-third" style="background-color: #f8f8f8; height: 510px">
+    <div class="w3-third" style="background-color: #f8f8f8;height: 510px">
       <h4 style="text-align:left; margin-top:25px; margin-left:10px; margin-bottom: 25px; font-weight: bold">금주의 게임왕</h4>
       <figure class="snip1384">
-          <img src="../static/img/tetris.jpg" style="width:100%"/>
+          <img src="../static/img/tetris.jpg" style="width:100% "/>
           <figcaption>
               <h3>TETRIS</h3>
               <p>
@@ -221,23 +223,23 @@ figure.snip1384.hover i {
               </p><i class="ion-ios-arrow-right"></i>
               <br><br>
           </figcaption>
-          <a href="/tetris_ranking"></a>
-      </figure>
+          <a href="/login"></a>
+      </figure>            
   
       <figure class="snip1384">
-          <img src="../static/img/leagueoflegends.jpg" alt="sample83" />
-          <figcaption>
-              <h3>League Of Legends</h3>
-              <p>
-                  <img src="../static/img/crown.png" width="20px" height="20px">
-                  &nbsp;{{top3[0][0].name}}&nbsp;&nbsp;&nbsp;{{top3[3][0]}}%<br><br>
-                  <img src="../static/img/second.png" width="20px" height="20px">
-                  &nbsp;{{top3[1][0].name}}&nbsp;&nbsp;&nbsp;{{top3[3][1]}}%<br><br>
-                  <img src="../static/img/third_.png" width="20px" height="20px">
-                  &nbsp;{{top3[2][0].name}}&nbsp;&nbsp;&nbsp;{{top3[3][2]}}%
-              </p><i class="ion-ios-arrow-right"></i>
-          </figcaption>
-          <a href="/lol_ranking"></a>
+              <img src="../static/img/leagueoflegends.jpg" alt="sample83" />
+              <figcaption>
+                  <h3>League Of Legends</h3>
+                  <p>
+                      <img src="../static/img/crown.png" width="20px" height="20px">
+                      &nbsp;{{top3[0][0].name}}&nbsp;&nbsp;&nbsp;{{top3[3][0]}}%<br><br>
+                      <img src="../static/img/second.png" width="20px" height="20px">
+                      &nbsp;{{top3[1][0].name}}&nbsp;&nbsp;&nbsp;{{top3[3][1]}}%<br><br>
+                      <img src="../static/img/third_.png" width="20px" height="20px">
+                      &nbsp;{{top3[2][0].name}}&nbsp;&nbsp;&nbsp;{{top3[3][2]}}%
+                  </p><i class="ion-ios-arrow-right"></i>
+              </figcaption>
+              <a href="/login"></a>
       </figure>
   </div>
   </div>
@@ -255,7 +257,7 @@ figure.snip1384.hover i {
                   </p><i class="ion-ios-arrow-right"></i>
                   <br><br>
               </figcaption>
-              <a href="/calendar"></a>
+              <a href="/login"></a>
           </figure>
       </div>
       <div class="w3-third" style="background-color: #f8f8f8; height: 510px">
@@ -269,14 +271,23 @@ figure.snip1384.hover i {
                   </p><i class="ion-ios-arrow-right"></i>
                   <br><br>
               </figcaption>
-              <a href="/board"></a>
+              <a href="/login"></a>
           </figure>
       </div>
-    <div class="w3-third">
-      <img src="../static/img/sandwich.jpg" alt="Sandwich" style="width:100%">
-      <h3>식사메뉴추천</h3>
-      <p>게시판 X, 클릭 시 전체메뉴보여주기, 오늘의 추천메뉴(날마다 변경)</p>
-    </div>
+      <div class="w3-third" style="background-color: #f8f8f8; height: 510px">
+          <h4 style="text-align:left; margin-top:25px; margin-left:10px; margin-bottom: 25px; font-weight: bold">오늘의 점심 추천</h4>
+          <figure class="snip1384">
+              <img src="../static/img/food.jpg" style="width:100%; height:413px"/>
+              <figcaption>
+                  <h3>오늘 뭐 먹지?</h3>
+                  <p>
+                    서초 / 교대 주변 맛집 추천!
+                  </p><i class="ion-ios-arrow-right"></i>
+                  <br><br>
+              </figcaption>
+              <a href="/login"></a>
+          </figure>
+      </div>
   </div>
 <script>
 // Script to open and close sidebar

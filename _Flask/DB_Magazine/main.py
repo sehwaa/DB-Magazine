@@ -14,28 +14,27 @@ app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = '1234'
 app.config['MYSQL_DATABASE_DB'] = 'dbmagazine'
-app.config['MYSQL_DATABASE_HOST'] = '192.168.22.103'
+app.config['MYSQL_DATABASE_HOST'] = '192.168.113.166'
 
 app.config.from_object(__name__)
 app.secret_key = os.urandom(12)
-
 mysql.init_app(app)
 
-lol_api_key = "########" #RIOT API KEY
+lol_api_key = "RGAPI-33b0f2d2-8d59-4279-b6fc-28e9906cef07"
 headers = {
     "Origin": "https://developer.riotgames.com",
     "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
-    "X-Riot-Token": "#######",
+    "X-Riot-Token": "RGAPI-33b0f2d2-8d59-4279-b6fc-28e9906cef07",
     "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"
 }
 
 @app.route('/')
 def index():
+    getlolSummonerId()
     result = tetrisrank()
     earlybird = early_bird()
     top3 = loltop3()
-    print(top3[0])
     if not session.get('user_info'):
         return render_template('index.html', gameranking=result , early_bird=earlybird, top3=top3)
     else:
@@ -154,15 +153,18 @@ def present():
 
 @app.route('/plist') #출석리스트
 def plist():
-    # SELECT 해와서 정보를 list.html 에 넘긴다
-    conn = mysql.connect()
-    cur = conn.cursor()
-    sql = "select name 이름, date_format(p_day, '%y-%m-%d') 날짜 from attendance where date_format(p_day, '%T') <='09:10:55' and date_format(p_day, '%y-%m-%d')=date_format(now(),'%y-%m-%d');"
-    cur.execute(sql)
-    lists = cur.fetchall()
-    print('lists===', lists)
-    conn.close()
-    return render_template('plist.html', lists=lists)
+    if session.get('user_info'):
+        # SELECT 해와서 정보를 list.html 에 넘긴다
+        conn = mysql.connect()
+        cur = conn.cursor()
+        sql = "select name 이름, date_format(p_day, '%y-%m-%d') 날짜 from attendance where date_format(p_day, '%T') <='09:10:55' and date_format(p_day, '%y-%m-%d')=date_format(now(),'%y-%m-%d');"
+        cur.execute(sql)
+        lists = cur.fetchall()
+        print('lists===', lists)
+        conn.close()
+        return render_template('plist.html', lists=lists, user_info=session.get('user_info'))
+    else:
+        return render_template('loginview.html')
 
 @app.route('/late', methods=['GET','POST']) #지각입력
 def late():
@@ -185,15 +187,18 @@ def late():
 
 @app.route('/llist') #지각리스트
 def llist():
-    # SELECT 해와서 정보를 list.html 에 넘긴다
-    sql = "select name 이름, date_format(p_day, '%y-%m-%d') 날짜 from attendance where date_format(p_day, '%y-%m-%d')=date_format(now(),'%y-%m-%d') and date_format(p_day, '%T')>='09:11:00' and date_format(p_day, '%T')<='14:00:00';"
-    conn = mysql.connect()
-    cur = conn.cursor()
-    cur.execute(sql)
-    late_lists = cur.fetchall()
-    print('late_lists===', late_lists)
-    conn.close()
-    return render_template('llist.html', late_lists=late_lists)
+    if session.get('user_info'):
+        # SELECT 해와서 정보를 list.html 에 넘긴다
+        sql = "select name 이름, date_format(p_day, '%y-%m-%d') 날짜 from attendance where date_format(p_day, '%y-%m-%d')=date_format(now(),'%y-%m-%d') and date_format(p_day, '%T')>='09:11:00' and date_format(p_day, '%T')<='14:00:00';"
+        conn = mysql.connect()
+        cur = conn.cursor()
+        cur.execute(sql)
+        late_lists = cur.fetchall()
+        print('late_lists===', late_lists)
+        conn.close()
+        return render_template('llist.html', late_lists=late_lists, user_info=session.get('user_info'))
+    else:
+        return render_template('loginview.html')
 
 @app.route('/select_l_count') #지각수 조회
 def s_llist():
@@ -364,6 +369,156 @@ def delete():
     conn.commit()
     conn.close()
     return redirect('/board#1')
+
+@app.route('/read/<title>')
+def read(title):
+    if session.get('user_info'):
+        #조회수 증가 코드
+        conn = mysql.connect()
+        cur = conn.cursor()
+        sql_update = "UPDATE nayoung SET hit=hit+1 WHERE title=%s"
+        cur.execute(sql_update, title)
+        conn.commit()
+        #글 하나를 SELECT 해서 read.html에 넘겨준다
+        conn = mysql.connect()
+        cur = conn.cursor()
+        sql = "SELECT * FROM nayoung WHERE title=%s"
+        cur.execute(sql, title)
+        conn.commit()
+        nb = cur.fetchone()
+        print(nb)  #nb=nayoung_board
+        return render_template('read.html', nb=nb, user_info=session.get('user_info'))
+        #return 'read OK'
+    else:
+        return render_template('loginview.html')
+
+@app.route('/column')
+def column():
+    return render_template('nyindex.html', user_info=session.get('user_info'))
+
+@app.route('/cboard', methods=['GET', 'POST'])
+def cboard():
+    if request.method == "POST":
+        title = request.form['title']
+        content = request.form['editor1'].replace('<p>','').replace('</p>','').replace('&nbsp','').replace(';', ' ')
+        preview = request.form['preview']
+        conn = mysql.connect()
+        cur = conn.cursor()
+        sql = "INSERT into nayoung (title,content,preview,hit) values (%s,%s,%s, 0)"
+        cur.execute(sql,(title,content,preview))
+        conn.commit()
+        conn.close()
+        return redirect('/list')
+    else:
+        return render_template('cboard.html')
+
+@app.route('/list')
+def listaaa():
+    if session.get('user_info'):
+        conn = mysql.connect()
+        cur = conn.cursor()
+        sql = "SELECT * from nayoung"
+        cur.execute(sql)
+        result = cur.fetchall()
+        conn.close()
+        return render_template('list.html', lists=result, user_info=session.get('user_info'))
+    else:
+        return render_template('loginview.html')
+
+@app.route('/story1/')
+def story1():
+    return render_template('story1.html')
+
+
+@app.route('/story2/')
+def story2():
+    return render_template('story2.html')
+
+
+@app.route('/story3/')
+def story3():
+    return render_template('story3.html')
+
+@app.route('/update/<title>')
+def updateform(title):
+    #업데이트 할 글을 SELECT해서 updateform.html 에 넘긴다
+    sql = "SELECT * FROM nayoung WHERE title=%s"
+    conn = mysql.connect()
+    cur = conn.cursor()
+    cur.execute(sql, title)
+    nb = cur.fetchone()
+    conn.close()
+    return render_template('updateform.html', nb=nb)
+
+
+@app.route('/update', methods=['POST'])
+# methods에 get생략 가능 기본값이라서
+def update():
+    #넘어온 값들로 UPDATE한 후 리스트로 이동
+    otitle = request.form['old_title']     
+    title = request.form['title']    
+    preview = request.form['preview']
+    content = request.form['content']
+    print(otitle)
+    sql = '''
+    UPDATE nayoung
+    SET title = %s, preview=%s, content=%s WHERE title=%s
+    '''
+    datas = (title, preview, content, otitle)
+    conn = mysql.connect()
+    cur = conn.cursor()
+    cur.execute(sql, datas)
+    conn.commit()
+    conn.close()
+    return redirect('/list')
+    # return 'update ok'
+
+@app.route('/deletecolumn/<int:num>')
+def deleteform(num):
+    return render_template('deleteform.html', num=num)
+
+@app.route('/deletecolumn', methods=['POST'])
+def deletecolumn():
+    num = request.form['num']
+    sql = 'DELETE FROM nayoung WHERE num=%s'
+    conn = mysql.connect()
+    cur = conn.cursor()
+    cur.execute(sql, num)
+    conn.commit()
+    conn.close()
+    return redirect('/list')
+
+@app.route('/lunch')
+def lunch():
+    if session.get('user_info'):
+        return render_template('mainview.html')
+    else:
+        return render_template('loginview.html')
+
+@app.route('/menu1')
+def menu1():
+    conn = mysql.connect()
+    cur = conn.cursor()
+    sql = "SELECT * FROM foodreview"
+    cur.execute(sql)
+    result = cur.fetchall()
+    conn.close()
+    return render_template('menu1.html', foodreview=result)
+
+@app.route('/process', methods=['GET', 'POST'])
+def process():
+    if request.method == 'POST':
+        writer = request.form['writer']
+        review = request.form['review']
+        conn = mysql.connect()
+        cur = conn.cursor()
+        sql="INSERT INTO foodreview (writer, review) VALUES(%s,%s)"
+        cur.execute(sql, (writer, review))
+        conn.commit()
+        conn.close()
+        return redirect('/menu1')
+    else:
+        return redirect('/menu1')
 
 #API에 사용하기 위한 summonerid 불러오기
 def getlolSummonerId():
@@ -566,7 +721,6 @@ def early_bird():
     conn = mysql.connect()
     cur = conn.cursor()
     now = datetime.datetime.now().strftime('%Y-%m-%d')
-    print(now)
     sql = "SELECT * FROM attendance WHERE DATE(p_day) = " + "'" +now+ "'" + " ORDER BY p_day ASC"
     cur.execute(sql)
     result = cur.fetchall()
@@ -585,5 +739,6 @@ def early_bird():
         result = [{'name':'없음'}, {'name':'없음'}, {'name':'없음'}]
         return result
 
+
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run(debug=True, host= '192.168.113.166')

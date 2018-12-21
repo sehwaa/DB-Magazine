@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/styles/layout.css" type="text/css">
+    <title>글 수정</title>
+    <style>
+    @import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+    body {
+        font-family: 'NanumSquare', sans-serif;
+        color: rgb(46, 45, 45);
+    }
+    a:link{
+        color: #C0BAB6;
+    }
+
+    a:visited{
+        color: #C0BAB6;
+    }
+
+    a:hover{
+        color: #C0BAB6;
+    }
+
+    a:active{
+        color: #C0BAB6;
+    }
+    #h2{
+        font-size:13px; 
+        background-color:#263238;
+        color:#C0BAB6;
+    }
+    #content{
+        background-color: #ffffff;
+        height : 555px;
+    }
+    table{
+        margin-left: 20%;
+    }
+    #title{
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+    }
+    #button1{
+        font-family: 'NanumSquare', sans-serif;
+        width:90px;
+        background-color: #898888;
+        border: none;
+        color:rgb(46, 45, 45);
+        padding: 8px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        margin: 4px;
+        cursor: pointer;
+        border-radius:5px;
+        margin-left: 65%; 
+    }
+    #button2{
+        font-family: 'NanumSquare', sans-serif;
+        width:90px;
+        background-color: #898888;
+        border: none;
+        color:rgb(46, 45, 45);
+        padding: 8px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        margin: 4px;
+        cursor: pointer;
+        border-radius:5px;
+        margin-left: 1%; 
+    }
+    table {
+        width: 600px;
+        height: 80px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid #8da2bfce;
+        border-collapse: collapse;
+        white-space:nowrap;
+        max-width:70%;
+        font-size :15px; 
+        color:#263238;
+    }
+    th, tr, td {
+        height: 45px;
+        border: 2px solid #8da2bfce;
+    }
+    #buttons {
+        background-color: #ffffff;
+    }
+    </style>
+</head>
+<body>
+<div>
+    <header id="header" class="clear">
+        <div id="hgroup">
+        <h1><a href="/column">김기자 칼럼</a>
+            <img src="../static/images/w2.png" width="50" height="50">  
+        </h1>
+        <h2 id='h2'>매력터지는 DB반 아이들의 이야기 :)</h2>
+        </div>
+    </header>
+</div>
+<div id='content'>
+    <br><br>
+    <h1 id='title'>칼럼 수정하기</h1>
+    <br><br>
+    <form name='form1' action="/update" method="POST">
+        <table width="500", border="1">
+            <tr>
+                <th>제목</th>
+                <td><input type='text' name='title' value={{nb.title}}></td>
+                <input type="hidden" name='old_title' value={{nb.title}}>
+            </tr> 
+            <tr>
+                <th>3줄요약</th>
+                <td><input type='text' name='preview' value={{nb.preview}}></td>
+            </tr> 
+            <tr>
+                <th>내용</th>
+                <td><textarea name='content' cols="50" rows="10">{{nb.content}}</textarea></td>
+            </tr>
+        </table>
+        <div id='buttons'>
+        <input type='submit' value='수정' id='button1'>
+        <input type='reset' value='취소' id='button2'>
+        <br><br>
+        </div>
+    </form>
+</div>
+<div class="wrapper row4">
+    <footer id="copyright" class="clear">
+        <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved_KimNayoung</p>
+        <p class="fl_right">Column by nayoungeeee</p>
+    </footer>
+</div>
+        
+</body>
+</html>

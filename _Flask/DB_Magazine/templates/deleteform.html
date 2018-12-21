@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/styles/layout.css" type="text/css">
+    <title>칼럼 삭제</title>
+    <style>
+    @import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+    body {
+        font-family: 'NanumSquare', sans-serif;
+        color: rgb(46, 45, 45);
+    }
+    a:link{
+        color: #C0BAB6;
+    }
+
+    a:visited{
+        color: #C0BAB6;
+    }
+
+    a:hover{
+        color: #C0BAB6;
+    }
+
+    a:active{
+        color: #C0BAB6;
+    }
+    #content {
+        height: 555px;
+        background-color: #ffffff;
+        text-align: left;
+    }
+    #delete{
+        margin-left: 20%;
+    }
+    #button{
+        font-family: 'NanumSquare', sans-serif;
+        width:80px;
+        background-color: #898888;
+        border: none;
+        color:rgb(46, 45, 45);
+        padding: 8px 0;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        margin: 4px;
+        cursor: pointer;
+        border-radius:5px;
+        margin-left: 10%; 
+    }
+    </style>
+</head>
+<body>
+<div>
+    <header id="header" class="clear">
+        <div id="hgroup">
+        <h1><a href="/column">김기자 칼럼</a>
+            <img src="../static/images/w2.png" width="50" height="50">  
+        </h1>
+        <h2 id='h2'>매력터지는 DB반 아이들의 이야기 :)</h2>
+        </div>
+    </header>
+</div>
+<div id='content'>
+    <div id='delete'>
+    <br><br>
+    <h1>칼럼 삭제하기</h1>
+    <br><br>
+    <form action='/deletecolumn' method='POST'>
+        글 번호를 입력하세요 : <input type='text' name='num'>
+        <input type='submit' value='삭제' id='button'> 
+    </form>
+    </div>
+</div>
+<div class="wrapper row4">
+    <footer id="copyright" class="clear">
+        <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved_KimNayoung</p>
+        <p class="fl_right">Column by nayoungeeee</p>
+    </footer>
+</div>
+</body>
+</html>

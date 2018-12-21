@@ -11,12 +11,14 @@
         @import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
         @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
         @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+        @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css); 
+    @import url(//cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css);
         * {
         -moz-box-sizing: border-box;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
         }
-        * {font-family: "NanumSquare", sans-serif}
+        * {font-family: "Nanum Square", sans-serif}
         .w3-bar-block .w3-bar-item {padding:20px}
         body{
         background-color: #ffffff;
@@ -56,17 +58,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
-    {%if user_info[0].name == "김나영"%}
-    <!-- Sidebar (hidden by default) -->
-    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
-        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
-        <a href="/" class="w3-bar-item w3-button">Home</a>
-        <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">칼럼쓰기</a>
-        <a href="/game" onclick="w3_close()" class="w3-bar-item w3-button">게임하기</a>
-        <a href="/deleteuser" onclick="w3_close()" class="w3-bar-item w3-button">회원탈퇴</a>
-        <a href="/logout" onclick="w3_close()" class="w3-bar-item w3-button">로그아웃</a>
-    </nav>
-    {%elif user_info[0].name == "메멘토"%}
+    {%if user_info[0].name == "메멘토"%}
     <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
         <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button">Close Menu</a>
         <a href="/" class="w3-bar-item w3-button">Home</a>

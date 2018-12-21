@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../static/styles/layout.css" type="text/css">
+<meta name="robots" content="noindex, nofollow">
+<title>김기자 전용 페이지</title>
+
+<script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+<style>
+@import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+
+
+body{
+    font-family: 'NanumSquare', sans-serif;
+}
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    text-underline-position: none;
+    
+}
+
+#container{
+    height: 100%;
+    width: 100%;
+    background-color: #ffffff;
+    display:block; 
+    padding:0;
+}
+
+#main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 80%;
+    padding-top: 5%;
+}
+
+#button1 {
+    font-family: 'NanumSquare', sans-serif;
+    width:100px;
+    background-color: #C0BAB6;
+    border: none;
+    color:rgb(46, 45, 45);
+    padding: 8px 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 4px;
+    cursor: pointer;
+    border-radius:5px;
+    margin-left: 68%; 
+}
+
+
+#button2 {
+  font-family: 'NanumSquare', sans-serif;
+  width:100px;
+  background-color: #C0BAB6;
+  border: none;
+  color:rgb(46, 45, 45);
+  padding: 8px 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 4px;
+  cursor: pointer;
+  border-radius:5px;
+}
+
+.button {
+    background-color: #ffffff;
+}
+
+#title{
+    width : 432px;
+}
+#date{
+    width: 100px;
+}
+#header{
+    color: #C0BAB6;
+}
+
+a:link{
+    color: #C0BAB6;
+}
+
+a:visited{
+    color: #C0BAB6;
+}
+
+a:hover{
+    color: #C0BAB6;
+}
+
+a:active{
+    color: #C0BAB6;
+}
+
+#cke_editor1{
+    color: #C0BAB6;
+}
+
+</style>
+</head>
+
+<body>
+<div>
+    <header id="header" class="clear">
+        <div id="hgroup">
+        <h1><a href="/column">김기자 칼럼</a>
+            <img src="../static/images/w2.png" width="50" height="50">  
+        </h1>
+        <h2>매력터지는 DB반 아이들의 이야기 :)</h2>
+        </div>
+    </header>
+</div>
+
+</div>
+
+<div id='container'>
+
+<div id="main">
+    <form action="/cboard", method="POST">    
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for ='title'></label>&nbsp;&nbsp;&nbsp;제목&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name='title' id='title'> 
+        <br>
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for ='title'></label>3줄 요약&nbsp;<textarea cols='68' rows='3' id='preview' name='preview'></textarea>
+        <br>
+        <br>
+        <textarea cols="80" id="editor1" name="editor1" rows="10">
+        </textarea>
+</div>
+</div>
+
+<script>
+    CKEDITOR.replace('editor1', { 
+    
+    height: 246
+    });
+
+</script>
+
+<div class='button'>
+    <!-- <form action="write" method="post"> -->
+    <br>
+    <br>
+    <input type="submit" value="칼럼쓰기" id="button1" onclick = "location.href='/list'">
+
+    <input type="reset" value="취소" id="button2" onclick = "location.href='/column'"> 
+    <br><br>
+
+</div>
+</form>
+
+<div class="wrapper row4">
+    <footer id="copyright" class="clear">
+        <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved_KimNayoung</p>
+        <p class="fl_right">Column by nayoungeeee</p>
+    </footer>
+</div>
+
+
+</body>
+
+
+</html>
